@@ -161,7 +161,7 @@ class GPIO(object):
 
         # Setup epoll
         p = select.epoll()
-        p.register(self._fd, select.EPOLLIN | select.EPOLLET | select.EPOLLPRI)
+        p.register(self._fd.fileno(), select.EPOLLIN | select.EPOLLET | select.EPOLLPRI)
 
         # Poll
         events = p.poll(timeout)
