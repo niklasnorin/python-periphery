@@ -163,9 +163,8 @@ class GPIO(object):
         p = select.epoll()
         p.register(self._fd, select.EPOLLIN | select.EPOLLET | select.EPOLLPRI)
 
-        # Poll twice, as first call returns with current state
-        for _ in range(2):
-            events = p.poll(timeout)
+        # Poll
+        events = p.poll(timeout)
 
         # If GPIO edge interrupt occurred
         if events:
